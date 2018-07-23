@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{width:150px; height:150px; background-color:red; position:absolute; left:0; top:0;}
+</style>
+</head>
+<body style="height:2000px;">
+<!--<div id="div1">123213</div>-->
+<img src="top.png" id="div1"/>
+<script>
+var oDiv = document.getElementById("div1");
+drag(oDiv)
+function drag(obj){
+	obj.onmousedown = function (ev){
+		ev = ev || event;
+		var disX = ev.clientX - this.offsetLeft;
+		var disY = ev.clientY - this.offsetTop;
+		document.onmousemove = function (ev){
+			ev = ev || event;
+			obj.style.left = ev.clientX - disX + "px";
+			obj.style.top = ev.clientY - disY + "px";
+		}
+		document.onmouseup = function (){
+			document.onmousemove=document.onmouseup= null;
+		}
+		return false;
+	}	
+}
+
+
+</script>
+</body>
+</html>
